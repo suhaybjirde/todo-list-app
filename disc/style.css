@@ -1,0 +1,250 @@
+:root {
+  --clr-primary-100: hsl(220, 98%, 61%);
+  --clr-primary-200: linear-gradient(to bottom right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  --clr-neutral-100: hsl(235, 21%, 11%);
+  --clr-neutral-200: hsl(235, 24%, 19%);
+  --clr-neutral-300: hsl(234, 39%, 85%);
+  --clr-neutral-400: hsl(236, 33%, 92%);
+  --clr-neutral-500: hsl(234, 11%, 52%);
+  --clr-neutral-600: hsl(233, 14%, 35%);
+  --clr-neutral-700: hsl(237, 14%, 26%);
+}
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/*
+  2. Remove default margin
+*/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/*
+  3. Allow percentage-based heights in the application
+*/
+html, body {
+  height: 100%;
+}
+
+/*
+  Typographic tweaks!
+  4. Add accessible line-height
+  5. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Josefin Sans", sans-serif;
+  background-color: var(--clr-neutral-100);
+  overflow-x: hidden;
+}
+
+/*
+  6. Improve media defaults
+*/
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/*
+  7. Remove built-in form typography styles
+*/
+input, button, textarea, select {
+  font: inherit;
+}
+
+/*
+  8. Avoid text overflows
+*/
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/*
+  remove text decoration from a tags
+*/
+a {
+  text-decoration: none;
+}
+
+/*
+  9. remove defaul ul style
+*/
+ul {
+  list-style: none;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
+.main {
+  min-height: 100vh;
+  position: relative;
+}
+.main__bg {
+  height: 43vh;
+  width: 100%;
+  background: url(/app/assets/images/bg-desktop-dark.jpg);
+}
+
+.main__todo {
+  width: min(100% - 1rem, 600px);
+  position: absolute;
+  top: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.main__todo__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.main__todo__header__title {
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  color: var(--clr-neutral-400);
+}
+.main__todo__header__img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+.main__todo__form {
+  display: flex;
+  gap: 20px;
+  background-color: var(--clr-neutral-200);
+  padding: 20px;
+  border-radius: 5px;
+  align-items: center;
+}
+.main__todo__form .circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--clr-neutral-500);
+}
+.main__todo__form #input {
+  background: transparent;
+  border: 0;
+  flex: 2;
+  font-size: 1.125rem;
+  color: var(--clr-neutral-400);
+}
+.main__todo__form #input:focus {
+  border: 0;
+  outline: none;
+}
+.main__todo__list {
+  margin-top: 30px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 5px 40px -20px black;
+}
+.main__todo__list__item {
+  padding: 20px;
+  background-color: var(--clr-neutral-200);
+  display: flex;
+  align-items: center;
+  font-size: 1.125rem;
+  gap: 20px;
+  border-bottom: 1px solid var(--clr-neutral-600);
+  color: var(--clr-neutral-400);
+}
+.main__todo__list__item__check {
+  all: unset;
+  color: var(--clr-neutral-400);
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--clr-neutral-500);
+  position: relative;
+}
+.main__todo__list__item__check .check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: var(--clr-primary-200);
+  border-radius: 50%;
+  inset: 0;
+  font-size: 0.6rem;
+}
+.main__todo__list__item__check:focus-within, .main__todo__list__item__check:hover {
+  border-width: 1px;
+  -o-border-image: var(--clr-primary-200) 1;
+     border-image: var(--clr-primary-200) 1;
+  background: linear-gradient(var(--clr-neutral-200), var(--clr-neutral-200)) padding-box, var(--clr-primary-200) border-box;
+  border-radius: 50em;
+  border: 1px solid transparent;
+}
+.main__todo__list__item__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.main__todo__list__item__wrapper__icon-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.main__todo__list__item__wrapper__icon-wrapper button {
+  all: unset;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+.main__todo__list__item__wrapper__icon-wrapper button:hover, .main__todo__list__item__wrapper__icon-wrapper button:focus-within {
+  color: var(--clr-primary-100);
+}
+.main__todo__list__item__wrapper__icon-wrapper button:last-child {
+  font-size: 1.3rem;
+}
+.main__todo__list__last {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--clr-neutral-200);
+  padding: 15px;
+  color: var(--clr-neutral-500);
+}
+.main__todo__list__last__sort a {
+  color: var(--clr-neutral-500);
+  margin-right: 5px;
+  transition: 0.3s;
+}
+.main__todo__list__last__sort a.current {
+  color: var(--clr-primary-100);
+}
+.main__todo__list__last__sort a:hover {
+  color: var(--clr-neutral-400);
+}
+.main__todo__list__last__clear {
+  transition: 0.3s;
+  color: var(--clr-neutral-500);
+}
+.main__todo__list__last__clear:hover {
+  color: var(--clr-neutral-400);
+}
+.main__todo__footer {
+  text-align: center;
+  margin-top: 30px;
+  color: var(--clr-neutral-500);
+}/*# sourceMappingURL=style.css.map */

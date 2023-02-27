@@ -1,0 +1,10 @@
+.main {
+    min-height: 100vh;
+    position: relative;
+
+    &__bg {
+        height: 43vh;
+        width: 100%;
+        background: url(/app/assets/images/bg-desktop-dark.jpg);
+    }
+}

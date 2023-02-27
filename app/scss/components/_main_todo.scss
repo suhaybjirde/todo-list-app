@@ -1,0 +1,154 @@
+@use '../helpers/mixins' as m;
+.main__todo {
+    width: min(100% - 1rem, 600px);
+    position: absolute;
+    top: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        &__title {
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            color: var(--clr-neutral-400)
+        }
+
+        &__img-wrapper {
+            @include m.flex-center;
+            padding: 5px;
+        }
+    }
+    &__form {
+
+    display: flex;
+    gap: 20px;
+    background-color: var(--clr-neutral-200);
+    padding: 20px;
+    border-radius: 5px;
+    align-items: center;
+
+    .circle {
+        @include m.circle;
+    }
+
+    #input {
+        background: transparent;
+        border: 0;
+        flex: 2;
+        font-size: 1.125rem;
+        color: var(--clr-neutral-400);
+        &:focus {
+            border: 0;
+            outline: none;
+        }
+    }
+
+    }
+    &__list {
+        margin-top: 30px;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 5px 40px -20px black;
+        &__item {
+            padding: 20px;
+            background-color: var(--clr-neutral-200);
+            display: flex;
+            align-items: center;
+            font-size: 1.125rem;
+            gap: 20px;
+            border-bottom: 1px solid var(--clr-neutral-600);
+            color: var(--clr-neutral-400);
+            &__check {
+                all: unset;
+                color: var(--clr-neutral-400);
+                cursor: pointer;
+                @include m.circle;
+                position: relative;
+
+                .check {
+                    @include m.flex-center;
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    background-image: var(--clr-primary-200);
+                    border-radius: 50%;
+                    inset: 0;
+                    font-size: 0.6rem;
+                    // display: none;
+                }
+
+                &:focus-within, &:hover {
+                    border-width: 1px;
+                    border-image: var(--clr-primary-200) 1;
+                    background: linear-gradient(var(--clr-neutral-200), var(--clr-neutral-200)) padding-box,
+                    var(--clr-primary-200) border-box;
+                    border-radius: 50em;
+                    border: 1px solid transparent;
+                }
+
+
+            }
+
+            &__wrapper {
+                @include m.flex-sb;
+                width: 100%;
+
+                &__icon-wrapper {
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+                    button {
+                        all: unset;
+                        cursor: pointer;
+                        font-size: 1.2rem;
+                        transition: .3s;
+                        &:hover, &:focus-within {
+                            color: var(--clr-primary-100)
+                        }
+
+                        &:last-child{
+                            font-size: 1.3rem;
+                        }
+                    }
+                }
+            }
+
+        }
+        &__last {
+            @include m.flex-sb;
+            background-color: var(--clr-neutral-200);
+            padding: 15px;
+            color: var(--clr-neutral-500);
+
+            &__sort a {
+                color: var(--clr-neutral-500);
+                margin-right: 5px;
+                transition: .3s;
+                &.current {
+                    color: var(--clr-primary-100);
+                }
+                &:hover {
+                    color: var(--clr-neutral-400);
+                }
+            }
+            &__clear {
+                transition: .3s;
+                color: var(--clr-neutral-500);
+
+                &:hover {
+                    color: var(--clr-neutral-400);
+                }
+            }
+        }
+        
+    }
+    &__footer {
+        text-align: center;
+        margin-top: 30px;
+        color: var(--clr-neutral-500);
+    }
+}

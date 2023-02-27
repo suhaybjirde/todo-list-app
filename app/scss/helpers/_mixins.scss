@@ -1,0 +1,29 @@
+@use '../base/colors' as c;
+
+@mixin genarate-colors {
+    @each $name, $shades in c.$colors {
+        @each $color, $value in $shades {
+            --clr-#{$name}-#{$color}: #{$value};
+        }
+    }
+}
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-sb {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+@mixin circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid var(--clr-neutral-500);
+}

@@ -1,0 +1,5 @@
+@use '../helpers/mixins' as m;
+
+:root {
+    @include m.genarate-colors;
+}
