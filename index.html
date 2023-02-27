@@ -20,12 +20,15 @@
   <main class="main">
     <div class="main__bg"></div>
     <div class="main__todo">
-      <div class="main__todo_header">
+      <div class="main__todo__header">
         <h1 class="main__todo__header__title">Todo</h1>
-        <img src="app/assets/images/icon-sun.svg" alt="theme" class="main__todo__header__img">
+        <div class="main__todo__header_img__wrapper">
+          <img src="app/assets/images/icon-sun.svg" alt="theme" class="main__todo__header__img-wrapper__img">
+        </div>
       </div>
       <form action="#" class="main__todo__form">
-        <input type="text" id="input">
+        <div class="circle"></div>
+        <input type="text" id="input" placeholder="Create a new todo">
       </form>
       <ul class="main__todo__list">
 
@@ -37,7 +40,7 @@
           </button>
           <div class="main__todo__list__item__wrapper">
             <p class="main__todo__list__item__wrapper__name">Complete only JavaScript course</p>
-            <div class="main__todo__list__item__wrapper__icon__wrapper">
+            <div class="main__todo__list__item__wrapper__icon-wrapper">
               <button id="edit">
                 <i class="fa-solid fa-pen-to-square"></i>
               </button>
@@ -57,7 +60,7 @@
           </button>
           <div class="main__todo__list__item__wrapper">
             <p class="main__todo__list__item__wrapper__name">Jog around the park 3x</p>
-            <div class="main__todo__list__item__wrapper__icon__wrapper">
+            <div class="main__todo__list__item__wrapper__icon-wrapper">
               <button id="edit">
                 <i class="fa-solid fa-pen-to-square"></i>
               </button>
@@ -78,7 +81,7 @@
           </button>
           <div class="main__todo__list__item__wrapper">
             <p class="main__todo__list__item__wrapper__name">Read for 1 hour</p>
-            <div class="main__todo__list__item__wrapper__icon__wrapper">
+            <div class="main__todo__list__item__wrapper__icon-wrapper">
               <button id="edit">
                 <i class="fa-solid fa-pen-to-square"></i>
               </button>
@@ -99,7 +102,7 @@
           </button>
           <div class="main__todo__list__item__wrapper">
             <p class="main__todo__list__item__wrapper__name">Pick up groceries</p>
-            <div class="main__todo__list__item__wrapper__icon__wrapper">
+            <div class="main__todo__list__item__wrapper__icon-wrapper">
               <button id="edit">
                 <i class="fa-solid fa-pen-to-square"></i>
               </button>
@@ -119,7 +122,7 @@
           </button>
           <div class="main__todo__list__item__wrapper">
             <p class="main__todo__list__item__wrapper__name">Complete Todo App on Frontend Mentor</p>
-            <div class="main__todo__list__item__wrapper__icon__wrapper">
+            <div class="main__todo__list__item__wrapper__icon-wrapper">
               <button id="edit">
                 <i class="fa-solid fa-pen-to-square"></i>
               </button>
@@ -129,8 +132,17 @@
             </div>
           </div>
         </li>
-
+        <li class="main__todo__list__last">
+          <p class="main__todo__list__last__left">5 items left</p>
+          <div class="main__todo__list__last__sort">
+            <a href="#" class="all current">All</a>
+            <a href="#" class="active">Active</a>
+            <a href="#" class="active">Completed</a>
+          </div>
+          <a href="#" class="main__todo__list__last__clear">Clear Completed</a>
+        </li>
       </ul>
+      <p class="main__todo__footer">Drag and drop to reorder list</p>
     </div>
   </main>
   <script src="app/js/script.js"></script>
