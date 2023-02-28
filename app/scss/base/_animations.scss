@@ -1,0 +1,17 @@
+
+/* themeChanger animations */
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+        opacity: 0;
+    }
+}
+/* completed task line through animation*/
+@keyframes lineThrough {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}

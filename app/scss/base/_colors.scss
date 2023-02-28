@@ -4,13 +4,24 @@ $colors: (
         200: linear-gradient(to bottom right, hsl(192, 100%, 67%), hsl(280, 87%, 65%)),
     ),
     // dark mode
+    // neutral: (
+    //     100:hsl(236, 33%, 92%), /* todo and themechanger*/
+    //     200:hsl(235, 24%, 19%), /* background l*/
+    //     300:hsl(234, 39%, 85%), /* li font color */
+    //     500:hsl(234, 11%, 52%), /* input links at the bottom*/
+    //     600: hsl(235, 21%, 11%), /* main bg background color*/ 
+    //     400:hsl(233, 14%, 35%), /* finished taskes */
+    //     700:hsl(237, 14%, 26%),
+    // )
+
+    // light mode
     neutral: (
-        100: hsl(235, 21%, 11%),
-        200:hsl(235, 24%, 19%),
-        300:hsl(234, 39%, 85%),
-        400:hsl(236, 33%, 92%),
-        500:hsl(234, 11%, 52%),
-        600:hsl(233, 14%, 35%),
-        700:hsl(237, 14%, 26%)
+        100:hsl(236, 33%, 92%), /* todo and themechanger*/
+        200:hsl(235, 24%, 19%), /* background l*/
+        300:hsl(234, 39%, 85%), /* li font color */
+        500:hsl(234, 11%, 52%), /* input links at the bottom*/
+        600: hsl(235, 21%, 11%), /* main bg background color*/ 
+        400:hsl(233, 14%, 35%), /* finished taskes */
+        700:hsl(237, 14%, 26%),
     )
 )

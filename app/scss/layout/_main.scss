@@ -6,5 +6,9 @@
         height: 43vh;
         width: 100%;
         background: url(/app/assets/images/bg-desktop-dark.jpg);
+        transition: .4s;
+        &.light {
+            background: url(/app/assets/images/bg-desktop-light.jpg);
+        }
     }
 }

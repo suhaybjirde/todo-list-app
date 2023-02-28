@@ -10,16 +10,25 @@
         align-items: center;
         justify-content: space-between;
         margin-bottom: 30px;
+        color: var(--clr-neutral-100);
         &__title {
             font-size: 2rem;
             text-transform: uppercase;
             letter-spacing: 10px;
-            color: var(--clr-neutral-400)
         }
 
         &__img-wrapper {
+            all: unset;
             @include m.flex-center;
             padding: 5px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            &:focus {
+                color: var(--clr-primary-100);
+            }
+            .icon-animation {
+                animation: rotate 0.4s linear forwards;
+            }
         }
     }
     &__form {
@@ -40,7 +49,7 @@
         border: 0;
         flex: 2;
         font-size: 1.125rem;
-        color: var(--clr-neutral-400);
+        color: var(--clr-neutral-300);
         &:focus {
             border: 0;
             outline: none;
@@ -50,9 +59,8 @@
     }
     &__list {
         margin-top: 30px;
-        border-radius: 5px;
+        border-radius: 5px 5px 0px 0px;
         overflow: hidden;
-        box-shadow: 0 5px 40px -20px black;
         &__item {
             padding: 20px;
             background-color: var(--clr-neutral-200);
@@ -60,11 +68,12 @@
             align-items: center;
             font-size: 1.125rem;
             gap: 20px;
-            border-bottom: 1px solid var(--clr-neutral-600);
-            color: var(--clr-neutral-400);
+            border-bottom: 1px solid var(--clr-neutral-400);
+            color: var(--clr-neutral-300);
+            min-height: 72px;
             &__check {
                 all: unset;
-                color: var(--clr-neutral-400);
+                color: var(--clr-neutral-100);
                 cursor: pointer;
                 @include m.circle;
                 position: relative;
@@ -78,7 +87,7 @@
                     border-radius: 50%;
                     inset: 0;
                     font-size: 0.6rem;
-                    // display: none;
+                    display: none;
                 }
 
                 &:focus-within, &:hover {
@@ -98,7 +107,7 @@
                 width: 100%;
 
                 &__icon-wrapper {
-                    display: flex;
+                    display: none;
                     align-items: center;
                     gap: 15px;
                     button {
@@ -116,31 +125,46 @@
                     }
                 }
             }
+            &:hover &__wrapper__icon-wrapper {
+                display: flex;
+            }
 
+        }
+        &__item[data-completed] &__item__wrapper__name {
+            color: var(--clr-neutral-400);
+            text-decoration: line-through
+        }
+        &__item[data-completed] &__item__check .check {
+            display: flex
         }
         &__last {
             @include m.flex-sb;
             background-color: var(--clr-neutral-200);
             padding: 15px;
             color: var(--clr-neutral-500);
+            border-radius: 0px 0px 5px 5px;
 
             &__sort a {
                 color: var(--clr-neutral-500);
                 margin-right: 5px;
                 transition: .3s;
+                outline: none;
+                border: 0;
                 &.current {
                     color: var(--clr-primary-100);
                 }
-                &:hover {
-                    color: var(--clr-neutral-400);
+                &:hover, &:focus {
+                    color: var(--clr-neutral-300);
                 }
             }
             &__clear {
                 transition: .3s;
                 color: var(--clr-neutral-500);
+                outline: none;
+                border: 0;
 
-                &:hover {
-                    color: var(--clr-neutral-400);
+                &:hover, &:focus {
+                    color: var(--clr-neutral-300);
                 }
             }
         }
@@ -148,7 +172,14 @@
     }
     &__footer {
         text-align: center;
-        margin-top: 30px;
+        margin: 30px 0px;
         color: var(--clr-neutral-500);
+    }
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+        opacity: 0;
     }
 }
