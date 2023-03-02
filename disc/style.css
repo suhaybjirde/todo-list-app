@@ -200,24 +200,6 @@ ul {
   font-size: 0.6rem;
   display: none;
 }
-.main__todo__list__item__check.checked .check {
-  display: flex;
-}
-.main__todo__list__item__check.checked ~ .main__todo__list__item__wrapper .main__todo__list__item__wrapper__name {
-  color: var(--clr-neutral-400);
-  position: relative;
-}
-.main__todo__list__item__check.checked ~ .main__todo__list__item__wrapper .main__todo__list__item__wrapper__name::after {
-  content: "";
-  position: absolute;
-  height: 1px;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 0;
-  background-color: var(--clr-neutral-400);
-  transition: 1s;
-}
 .main__todo__list__item__check:focus-within, .main__todo__list__item__check:hover {
   border-width: 1px;
   -o-border-image: var(--clr-primary-200) 1;
@@ -250,6 +232,13 @@ ul {
   font-size: 1.3rem;
 }
 .main__todo__list__item:hover .main__todo__list__item__wrapper__icon-wrapper {
+  display: flex;
+}
+.main__todo__list__item[data-completed] .main__todo__list__item__wrapper__name {
+  color: var(--clr-neutral-400);
+  text-decoration: line-through;
+}
+.main__todo__list__item[data-completed] .main__todo__list__item__check .check {
   display: flex;
 }
 .main__todo__list__last {
