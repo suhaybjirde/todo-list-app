@@ -115,13 +115,10 @@
             </div>
           </li>
   
-  
           <li class="main__todo__list__item">
             <button class="main__todo__list__item__check">
               <div class="check">
-                <span>
-                  <i class="fa-solid fa-check"></i>
-                </span>
+                <i class="fa-solid fa-check"></i>
               </div>
             </button>
             <div class="main__todo__list__item__wrapper">
@@ -136,15 +133,17 @@
               </div>
             </div>
           </li>
+  
+  
         </ul>
         <div class="main__todo__list__last">
           <p class="main__todo__list__last__left">5 items left</p>
           <div class="main__todo__list__last__sort">
-            <a href="#" class="all current">All</a>
-            <a href="#" class="active">Active</a>
-            <a href="#" class="active">Completed</a>
+            <button href="#" class="all current">All</button>
+            <button href="#" class="active">Active</button>
+            <button href="#" class="active">Completed</button>
           </div>
-          <a href="#" class="main__todo__list__last__clear">Clear Completed</a>
+          <button href="#" class="main__todo__list__last__clear" id="clear">Clear Completed</button>
         </div>
       </section>
       <p class="main__todo__footer">Drag and drop to reorder list</p>

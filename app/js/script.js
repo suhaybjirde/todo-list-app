@@ -1,11 +1,15 @@
 const root = document.querySelector(':root'),
-    themeChenger = document.querySelector('.main__todo__header__img-wrapper'),
-    bg = document.querySelector('.main__bg'),
-    todoListUl = document.querySelector('.main__todo__list'),
-    input = document.querySelector('#input'),
-    form = document.querySelector('#form');
-
-
+themeChenger = document.querySelector('.main__todo__header__img-wrapper'),
+bg = document.querySelector('.main__bg'),
+todoListUl = document.querySelector('.main__todo__list'),
+liTasks = document.querySelectorAll('.main__todo__list li'),
+input = document.querySelector('#input'),
+form = document.querySelector('#form'),
+botttomLinks = document.querySelectorAll('.main__todo__list__last__sort button'),
+clearAllbtn = document.querySelector('#clear');
+// changing task item into array thay way we can work with it easly;
+let ulArray = [];
+liTasks.forEach(task => ulArray.push(task))
 
 // themes
 
@@ -52,9 +56,10 @@ function completedTask() {
         targetParent = e.target.parentElement;
         targetParentsParent = e.target.parentElement.parentElement;
         targetParentsParentsParent = e.target.parentElement.parentElement.parentElement;
+        console.log(target)
         if (target.classList.contains('main__todo__list__item__check')) targetParent.toggleAttribute('data-completed');
         if (target.classList.contains('check')) targetParentsParent.toggleAttribute('data-completed');
-        if (target.classList.contains('fa-cleck')) targetParentsParentsParent.toggleAttribute('data-completed')
+        if (target.classList.contains('fa-check')) targetParentsParentsParent.toggleAttribute('data-completed')
     })
 }
 // add task
@@ -64,8 +69,8 @@ function addTask() {
     form.addEventListener('submit', (e)=> {
         e.preventDefault()
         let newTask = createTask(input.value)
-        console.log(newTask)
-        todoListUl.appendChild(newTask)
+        ulArray.push(newTask);
+        ulArray.forEach(task => todoListUl.appendChild(task))
     })
 }
 
@@ -74,7 +79,7 @@ function createTask(taskName) {
     <li class="main__todo__list__item">
         <button class="main__todo__list__item__check">
             <div class="check">
-            <i class="fa-solid fa-check"></i>
+                <i class="fa-solid fa-check"></i>
             </div>
         </button>
         <div class="main__todo__list__item__wrapper">
@@ -93,4 +98,50 @@ function createTask(taskName) {
     let template = document.createElement('template');
     template.innerHTML = taskTemp.trim()
     return template.content.firstElementChild;
+}
+
+// filtering 
+filtering()
+function filtering() {
+    botttomLinks[0].addEventListener('click', (e)=> {
+        e.preventDefault()
+        todoListUl.innerHTML = '';
+        addCurrentClass(botttomLinks[0])
+        ulArray.forEach(task => todoListUl.appendChild(task))
+    })
+    botttomLinks[1].addEventListener('click', (e)=> {
+        e.preventDefault()
+        let active = ulArray.filter(task => !task.hasAttribute('data-completed'));
+        addCurrentClass(botttomLinks[1])
+        todoListUl.innerHTML = '';
+        active.forEach(task => todoListUl.appendChild(task))
+
+    })
+    botttomLinks[2].addEventListener('click', (e)=> {
+        e.preventDefault()
+        let active = ulArray.filter(task => task.hasAttribute('data-completed'));
+        addCurrentClass(botttomLinks[2])
+        todoListUl.innerHTML = '';
+        active.forEach(task => todoListUl.appendChild(task))
+
+    })
+
+    clearAllbtn.addEventListener('click', (e)=> {
+        e.preventDefault();
+        removeCurrentClass()
+        ulArray = []
+        todoListUl.innerHTML = ''
+    })
+}
+
+function addCurrentClass(current) {
+    botttomLinks.forEach(link => {
+        link.classList.remove('current');
+        current.classList.add('current')
+    })
+}
+function removeCurrentClass() {
+    botttomLinks.forEach(link => {
+        link.classList.remove('current');
+    })
 }

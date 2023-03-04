@@ -44,6 +44,10 @@ img, picture, video, canvas, svg {
 input, button, textarea, select {
   font: inherit;
 }
+button {
+  all: unset;
+  cursor: pointer;
+}
 /*
   8. Avoid text overflows
 */
