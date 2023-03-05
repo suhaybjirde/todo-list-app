@@ -171,3 +171,26 @@ function show() {
 function left(item) {
     leftItems.innerText = `${item} items left`
 }
+
+// delete and edit;
+deleteEdit()
+function deleteEdit() {
+    todoListUl.addEventListener('click', (e)=> {
+        let target = e.target;
+        if (target.parentElement.id == 'edit') {
+            let taskedit = target.parentElement.parentElement.previousElementSibling;
+            taskedit.setAttribute('contenteditable', true);
+            taskedit.focus()
+            taskedit.addEventListener('focusout', ()=> {
+                taskedit.innerText = taskedit.innerText.trim()
+                taskedit.removeAttribute('contenteditable')
+            })
+            window.addEventListener('keypress', (e)=> {
+                if (e.key == 'Enter') {
+                    taskedit.innerText = taskedit.innerText.trim()
+                    taskedit.removeAttribute('contenteditable')
+                }
+            }) 
+        }
+    })
+}
