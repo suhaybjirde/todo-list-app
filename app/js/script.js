@@ -94,7 +94,7 @@ function createTask(taskName) {
                 <i class="fa-solid fa-pen-to-square"></i>
             </button>
             <button id="delete">
-                <i class="fa-solid fa-xmark"></i>
+                <i class="fa-solid fa-trash-can"></i> 
             </button>
             </div>
         </div>
@@ -191,6 +191,14 @@ function deleteEdit() {
                     taskedit.removeAttribute('contenteditable')
                 }
             }) 
+        }
+        if (target.parentElement.id == 'delete') {
+            let li = target.parentElement.parentElement.parentElement.parentElement;
+            let index = ulArray.indexOf(li);
+            ulArray.splice(index, 1);
+            todoListUl.innerHTML = '';
+            ulArray.forEach(task => todoListUl.appendChild(task))
+            itemsleft()
         }
     })
 }
