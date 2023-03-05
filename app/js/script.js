@@ -152,7 +152,7 @@ function removeCurrentClass() {
     })
 }
 
-// left 
+// left items
 itemsleft()
 function itemsleft() {
     let notcompleted = 0;

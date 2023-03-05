@@ -107,6 +107,22 @@ ul {
   background: url(/app/assets/images/bg-desktop-light.jpg);
 }
 
+/* themeChanger animations */
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+    opacity: 0;
+  }
+}
+/* completed task line through animation*/
+@keyframes lineThrough {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
 .main__todo {
   width: min(100% - 1rem, 600px);
   position: absolute;
@@ -174,10 +190,11 @@ ul {
 .main__todo__list__item {
   padding: 20px;
   background-color: var(--clr-neutral-200);
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
   align-items: center;
   font-size: 1.125rem;
-  gap: 20px;
   border-bottom: 1px solid var(--clr-neutral-400);
   color: var(--clr-neutral-300);
   min-height: 72px;
@@ -236,6 +253,11 @@ ul {
 .main__todo__list__item__wrapper__icon-wrapper button:last-child {
   font-size: 1.3rem;
 }
+@media (max-width: 39.375rem) {
+  .main__todo__list__item__wrapper__icon-wrapper {
+    display: flex;
+  }
+}
 .main__todo__list__item:hover .main__todo__list__item__wrapper__icon-wrapper {
   display: flex;
 }
@@ -255,6 +277,21 @@ ul {
   color: var(--clr-neutral-500);
   min-height: 72px;
   border-radius: 0px 0px 5px 5px;
+}
+@media (max-width: 39.375rem) {
+  .main__todo__list__last__sort {
+    position: absolute;
+    bottom: -70px;
+    left: 0;
+    width: 100%;
+    background-color: var(--clr-neutral-200);
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    border-radius: 5px;
+  }
 }
 .main__todo__list__last__sort button {
   color: var(--clr-neutral-500);
@@ -283,10 +320,10 @@ ul {
   margin: 30px 0px;
   color: var(--clr-neutral-500);
 }
-
-@keyframes rotate {
-  to {
-    transform: rotate(360deg);
-    opacity: 0;
+@media (max-width: 39.375rem) {
+  .main__todo__footer {
+    position: absolute;
+    bottom: -150px;
+    width: 100%;
   }
 }/*# sourceMappingURL=style.css.map */
