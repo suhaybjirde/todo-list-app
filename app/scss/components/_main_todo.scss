@@ -121,10 +121,6 @@
                         &:hover, &:focus-within {
                             color: var(--clr-primary-100)
                         }
-
-                        &:last-child{
-                            font-size: 1.3rem;
-                        }
                     }
                     @media (max-width: map-get($breakpoint, small)) {
                         display: flex;
