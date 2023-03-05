@@ -6,11 +6,14 @@ liTasks = document.querySelectorAll('.main__todo__list li'),
 input = document.querySelector('#input'),
 form = document.querySelector('#form'),
 botttomLinks = document.querySelectorAll('.main__todo__list__last__sort button'),
+leftItems = document.querySelector('#left-items'),
 clearAllbtn = document.querySelector('#clear');
-// changing task item into array thay way we can work with it easly;
+// changing task item into array so that we can work on it easly;
 let ulArray = [];
 liTasks.forEach(task => ulArray.push(task))
 
+//we'll use it to keep track of completed tasks to show on the bottom
+let arrayLenght = ulArray.length
 // themes
 
 function darkTheme() {
@@ -53,15 +56,15 @@ completedTask()
 function completedTask() {
     todoListUl.addEventListener('click', (e)=> {
         target = e.target;
-        targetParent = e.target.parentElement;
-        targetParentsParent = e.target.parentElement.parentElement;
-        targetParentsParentsParent = e.target.parentElement.parentElement.parentElement;
-        console.log(target)
+        targetParent = target.parentElement;
+        targetParentsParent = targetParent.parentElement;
+        targetParentsParentsParent = targetParentsParent.parentElement;
         if (target.classList.contains('main__todo__list__item__check')) targetParent.toggleAttribute('data-completed');
         if (target.classList.contains('check')) targetParentsParent.toggleAttribute('data-completed');
-        if (target.classList.contains('fa-check')) targetParentsParentsParent.toggleAttribute('data-completed')
+        if (target.classList.contains('fa-check')) targetParentsParentsParent.toggleAttribute('data-completed');
     })
 }
+
 // add task
 addTask()
 
@@ -71,6 +74,8 @@ function addTask() {
         let newTask = createTask(input.value)
         ulArray.push(newTask);
         ulArray.forEach(task => todoListUl.appendChild(task))
+        input.value = '';
+        itemsleft()
     })
 }
 
@@ -130,7 +135,8 @@ function filtering() {
         e.preventDefault();
         removeCurrentClass()
         ulArray = []
-        todoListUl.innerHTML = ''
+        todoListUl.innerHTML = '';
+        itemsleft()
     })
 }
 
@@ -144,4 +150,24 @@ function removeCurrentClass() {
     botttomLinks.forEach(link => {
         link.classList.remove('current');
     })
+}
+
+// left 
+itemsleft()
+function itemsleft() {
+    let notcompleted = 0;
+    ulArray.forEach(item => {
+        if (!item.hasAttribute('data-completed')) notcompleted += 1;
+    })
+    left(notcompleted)
+}
+show()
+function show() {
+    todoListUl.addEventListener('click', ()=> {
+        itemsleft()
+    })
+}
+
+function left(item) {
+    leftItems.innerText = `${item} items left`
 }
