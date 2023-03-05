@@ -11,4 +11,7 @@
             background: url(/app/assets/images/bg-desktop-light.jpg);
         }
     }
+    &__todo__w{
+        box-shadow: var(--clr-neutral-700);
+    }
 }

@@ -7,7 +7,7 @@
   --clr-neutral-500: hsl(234, 11%, 52%);
   --clr-neutral-600: hsl(235, 21%, 11%);
   --clr-neutral-400: hsl(233, 14%, 35%);
-  --clr-neutral-700: hsl(237, 14%, 26%);
+  --clr-neutral-700: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
 }
 
 /*
@@ -105,6 +105,9 @@ ul {
 }
 .main__bg.light {
   background: url(/app/assets/images/bg-desktop-light.jpg);
+}
+.main__todo__w {
+  box-shadow: var(--clr-neutral-700);
 }
 
 /* themeChanger animations */

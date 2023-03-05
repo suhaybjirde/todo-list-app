@@ -26,6 +26,17 @@ function darkTheme() {
     root.style.setProperty('--clr-neutral-700', 'hsl(237, 14%, 26%)');
     root.style.setProperty('--clr-neutral-800', 'hsl(0, 0%, 0%)');
 }
+// ligth theme
+function lightTheme() {
+    root.style.setProperty('--clr-neutral-100', 'hsl(0, 0%, 100%)');
+    root.style.setProperty('--clr-neutral-200', 'hsl(0, 0%, 100%)');
+    root.style.setProperty('--clr-neutral-300', 'hsl(235, 19%, 35%)');
+    root.style.setProperty('--clr-neutral-400', 'hsl(233, 11%, 84%)');
+    root.style.setProperty('--clr-neutral-500', 'hsl(236, 9%, 61%)');
+    root.style.setProperty('--clr-neutral-600', 'hsl(0, 0%, 98%)');
+    root.style.setProperty('--clr-neutral-700', '0px 35px 50px -15px rgba(194, 195, 214, 0.5)');
+    // root.style.setProperty('--clr-neutral-800', 'hsl(0, 0%, 0%)');
+}
 
 themeChenger.addEventListener('click', ()=> {
     themeChenger.classList.toggle('lightTheme');
