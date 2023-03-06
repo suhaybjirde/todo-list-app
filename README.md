@@ -16,12 +16,13 @@
 ### Built with
 
 - Semantic HTML5 markup
-- CSS custom properties
 - Flexbox
 - CSS Grid
+- Sass
+- Js
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+- FaceBook - [@Suhayb Jirde](https://www.facebook.com/profile.php?id=100087769545110)
+- Frontend Mentor - [@Suhayb Jirde](https://www.frontendmentor.io/profile/suhaybjirde)
+- Twitter - [@Suhayb JIrde](https://twitter.com/suhaybjirde)
