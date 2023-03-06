@@ -11,11 +11,11 @@ clearAllbtn = document.querySelector('#clear');
 // changing task item into array so that we can work on it easly;
 let ulArray = [];
 liTasks.forEach(task => ulArray.push(task))
-
+// retreve data
 //we'll use it to keep track of completed tasks to show on the bottom
 let arrayLenght = ulArray.length
 // themes
-
+let darkmode = true;
 function darkTheme() {
     root.style.setProperty('--clr-neutral-100', 'hsl(236, 33%, 92%)');
     root.style.setProperty('--clr-neutral-200', 'hsl(235, 24%, 19%)');
@@ -37,11 +37,12 @@ function lightTheme() {
     root.style.setProperty('--clr-neutral-700', '0px 35px 50px -15px rgba(194, 195, 214, 0.5)');
     // root.style.setProperty('--clr-neutral-800', 'hsl(0, 0%, 0%)');
 }
-
 themeChenger.addEventListener('click', ()=> {
     themeChenger.classList.toggle('lightTheme');
     if (themeChenger.classList.contains('lightTheme')) {
         themeChenger.firstElementChild.classList.add('icon-animation');
+        darkmode = false;
+        setLocalStorageTheme()
         setTimeout(()=>{
             lightTheme();
             themeChenger.innerHTML = '<i class="fa-solid fa-moon"></i>';
@@ -51,6 +52,8 @@ themeChenger.addEventListener('click', ()=> {
     }
     else {
         themeChenger.firstElementChild.classList.add('icon-animation');
+        darkmode = true
+        setLocalStorageTheme()
         setTimeout(()=>{
             darkTheme();
             themeChenger.firstElementChild.classList.remove('icon-animation');
@@ -70,9 +73,18 @@ function completedTask() {
         targetParent = target.parentElement;
         targetParentsParent = targetParent.parentElement;
         targetParentsParentsParent = targetParentsParent.parentElement;
-        if (target.classList.contains('main__todo__list__item__check')) targetParent.toggleAttribute('data-completed');
-        if (target.classList.contains('check')) targetParentsParent.toggleAttribute('data-completed');
-        if (target.classList.contains('fa-check')) targetParentsParentsParent.toggleAttribute('data-completed');
+        if (target.classList.contains('main__todo__list__item__check')) {
+            targetParent.toggleAttribute('data-completed');
+            setLocalStorage()
+        };
+        if (target.classList.contains('check')) {
+            targetParentsParent.toggleAttribute('data-completed');
+            setLocalStorage()
+        }
+        if (target.classList.contains('fa-check')) {
+            targetParentsParentsParent.toggleAttribute('data-completed');
+            setLocalStorage()
+        }
     })
 }
 
@@ -87,6 +99,7 @@ function addTask() {
         ulArray.forEach(task => todoListUl.appendChild(task))
         input.value = '';
         itemsleft()
+        setLocalStorage()
     })
 }
 
@@ -124,22 +137,15 @@ function filtering() {
         todoListUl.innerHTML = '';
         addCurrentClass(botttomLinks[0])
         ulArray.forEach(task => todoListUl.appendChild(task))
+        setLocalStorageCurrentTap()
     })
     botttomLinks[1].addEventListener('click', (e)=> {
         e.preventDefault()
-        let active = ulArray.filter(task => !task.hasAttribute('data-completed'));
-        addCurrentClass(botttomLinks[1])
-        todoListUl.innerHTML = '';
-        active.forEach(task => todoListUl.appendChild(task))
-
+        filterActive()
     })
     botttomLinks[2].addEventListener('click', (e)=> {
         e.preventDefault()
-        let active = ulArray.filter(task => task.hasAttribute('data-completed'));
-        addCurrentClass(botttomLinks[2])
-        todoListUl.innerHTML = '';
-        active.forEach(task => todoListUl.appendChild(task))
-
+        filterCompleted()
     })
 
     clearAllbtn.addEventListener('click', (e)=> {
@@ -148,6 +154,7 @@ function filtering() {
         ulArray = []
         todoListUl.innerHTML = '';
         itemsleft()
+        setLocalStorage()
     })
 }
 
@@ -163,6 +170,21 @@ function removeCurrentClass() {
     })
 }
 
+function filterCompleted() {
+    let active = ulArray.filter(task => task.hasAttribute('data-completed'));
+    addCurrentClass(botttomLinks[2])
+    todoListUl.innerHTML = '';
+    active.forEach(task => todoListUl.appendChild(task))
+    setLocalStorageCurrentTap()
+}
+
+function filterActive () {
+    let active = ulArray.filter(task => !task.hasAttribute('data-completed'));
+    addCurrentClass(botttomLinks[1])
+    todoListUl.innerHTML = '';
+    active.forEach(task => todoListUl.appendChild(task))
+    setLocalStorageCurrentTap()
+}
 // left items
 itemsleft()
 function itemsleft() {
@@ -195,11 +217,13 @@ function deleteEdit() {
             taskedit.addEventListener('focusout', ()=> {
                 taskedit.innerText = taskedit.innerText.trim()
                 taskedit.removeAttribute('contenteditable')
+                setLocalStorage()
             })
             window.addEventListener('keypress', (e)=> {
                 if (e.key == 'Enter') {
                     taskedit.innerText = taskedit.innerText.trim()
                     taskedit.removeAttribute('contenteditable')
+                    setLocalStorage()
                 }
             }) 
         }
@@ -210,6 +234,69 @@ function deleteEdit() {
             todoListUl.innerHTML = '';
             ulArray.forEach(task => todoListUl.appendChild(task))
             itemsleft()
+            setLocalStorage()
         }
     })
+}
+// local storage 
+function setLocalStorage() {
+    let tasks = []
+    ulArray.forEach(item => tasks.push({
+        taskName: item.innerText,
+        completed: item.hasAttribute('data-completed')
+    }))
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+}
+if (!localStorage.getItem('darkmode')) setLocalStorageTheme();
+function setLocalStorageTheme() {
+    localStorage.setItem('darkmode', darkmode)
+}
+function setLocalStorageCurrentTap() {
+    let current;
+    botttomLinks.forEach(link => {
+        if (link.classList.contains('current')) {
+            current = link.innerText
+        }
+    });
+    localStorage.setItem('current', current)
+}
+
+// getting data from local storage
+getDataFromLocalStorage()
+function getDataFromLocalStorage() {
+    // theme
+    let mode = localStorage.getItem('darkmode');
+    if (mode == 'true') {
+        darkTheme()
+    }else {
+        lightTheme()
+    }
+
+    // tasks
+
+    let data = JSON.parse(localStorage.getItem('tasks'));
+    if (data) {
+        ulArray = [];
+        todoListUl.innerHTML = '';
+        data.forEach(task => {
+            let newTask = createTask(task.taskName)
+            if(task.completed) newTask.setAttribute('data-completed', '')
+            ulArray.push(newTask);
+            // console.log(ulArray)
+            ulArray.forEach(task => todoListUl.appendChild(task))
+        })
+        itemsleft()
+    }
+
+
+    // current tap
+
+    let current = localStorage.getItem('current');
+    if (current == 'Completed'){
+        filterCompleted()
+    };
+    if (current == 'Active'){
+        filterActive()
+    };
+
 }

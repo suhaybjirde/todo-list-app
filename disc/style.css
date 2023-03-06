@@ -240,17 +240,18 @@ ul {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
+  gap: 10px;
   width: 100%;
 }
 .main__todo__list__item__wrapper__name {
-  max-width: 450px;
+  max-width: 390px;
 }
 .main__todo__list__item__wrapper__name:focus {
   padding: 5px 10px;
 }
 @media (max-width: 39.375rem) {
   .main__todo__list__item__wrapper__name {
-    max-width: 265px;
+    max-width: 270px;
   }
 }
 .main__todo__list__item__wrapper__icon-wrapper {
