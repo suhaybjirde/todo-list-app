@@ -25,6 +25,7 @@ function darkTheme() {
     root.style.setProperty('--clr-neutral-600', 'hsl(235, 21%, 11%)');
     root.style.setProperty('--clr-neutral-700', 'hsl(237, 14%, 26%)');
     root.style.setProperty('--clr-neutral-800', 'hsl(0, 0%, 0%)');
+    bg.classList.remove('light');
 }
 // ligth theme
 function lightTheme() {
@@ -35,6 +36,7 @@ function lightTheme() {
     root.style.setProperty('--clr-neutral-500', 'hsl(236, 9%, 61%)');
     root.style.setProperty('--clr-neutral-600', 'hsl(0, 0%, 98%)');
     root.style.setProperty('--clr-neutral-700', '0px 35px 50px -15px rgba(194, 195, 214, 0.5)');
+    bg.classList.add('light');
     // root.style.setProperty('--clr-neutral-800', 'hsl(0, 0%, 0%)');
 }
 themeChenger.addEventListener('click', ()=> {
@@ -47,7 +49,6 @@ themeChenger.addEventListener('click', ()=> {
             lightTheme();
             themeChenger.innerHTML = '<i class="fa-solid fa-moon"></i>';
             themeChenger.firstElementChild.classList.remove('icon-animation');
-            bg.classList.add('light');
         }, 400)
     }
     else {
@@ -58,7 +59,6 @@ themeChenger.addEventListener('click', ()=> {
             darkTheme();
             themeChenger.firstElementChild.classList.remove('icon-animation');
             themeChenger.innerHTML = '<i class="fa-solid fa-sun"></i>';
-            bg.classList.remove('light');
         }, 400)
     }
 })
@@ -240,9 +240,9 @@ function deleteEdit() {
 }
 // local storage 
 function setLocalStorage() {
-    let tasks = []
+    let tasks = [];
     ulArray.forEach(item => tasks.push({
-        taskName: item.innerText,
+        taskName: item.innerText.trim(),
         completed: item.hasAttribute('data-completed')
     }))
     localStorage.setItem('tasks', JSON.stringify(tasks))
@@ -299,4 +299,15 @@ function getDataFromLocalStorage() {
         filterActive()
     };
 
+}
+
+// drag and drop 
+drag()
+function drag() {
+    new Sortable(todoListUl, {
+        animation: 350
+    })
+    todoListUl.addEventListener('click', ()=> {
+        setLocalStorage()
+    })
 }
