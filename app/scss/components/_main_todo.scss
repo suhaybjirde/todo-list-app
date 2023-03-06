@@ -2,19 +2,19 @@
 @use '../base/breakpoints' as *;
 @use '../base/animations' as *;
 .main__todo {
-    width: min(100% - 1rem, 600px);
+    width: min(100% - 1rem, 33.75rem);
     position: absolute;
-    top: 10vh;
+    top: 4.375rem;
     left: 50%;
     transform: translateX(-50%);
     &__header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 30px;
+        margin-bottom: 58px;
         color: var(--clr-neutral-100);
         &__title {
-            font-size: 2rem;
+            font-size: clamp(2rem, 5w, 3.635rem);
             text-transform: uppercase;
             letter-spacing: 10px;
         }
@@ -22,8 +22,12 @@
         &__img-wrapper {
             all: unset;
             @include m.flex-center;
-            padding: 5px;
             cursor: pointer;
+
+            i {
+                width: 26px;
+                height: 26px;
+            }
             font-size: 1.5rem;
             &:focus {
                 color: var(--clr-primary-100);
@@ -60,7 +64,7 @@
 
     }
     &__list {
-        margin-top: 30px;
+        margin-top: 24px;
         border-radius: 5px 5px 0px 0px;
         overflow: hidden;
         &__item {
@@ -109,16 +113,17 @@
                 display: grid;
                 grid-template-columns: 1fr auto;
                 align-items: center;
+                gap: 10px;
                 width: 100%;
 
                 &__name {
-                    max-width: 450px;
+                    max-width: 390px;
                     &:focus {
                         padding: 5px 10px;
                     }
 
                     @media (max-width: map-get($breakpoint, small)) {
-                        max-width: 265px;
+                        max-width: 270px;
                     }
                 }
 
@@ -181,6 +186,7 @@
                 transition: .3s;
                 outline: none;
                 border: 0;
+                font-weight: 700;
                 &.current {
                     color: var(--clr-primary-100);
                 }
@@ -193,7 +199,7 @@
                 color: var(--clr-neutral-500);
                 outline: none;
                 border: 0;
-
+                font-weight: 400;
                 &:hover, &:focus {
                     color: var(--clr-neutral-300);
                 }
